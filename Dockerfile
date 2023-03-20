@@ -1,0 +1,12 @@
+FROM alpine:latest
+
+WORKDIR /root/
+
+RUN apk update \
+    && apk add wget unzip \
+    && wget https://cdn.ipip.net/17mon/besttrace4linux.zip \
+    && mkdir -p /root/besttrace \
+    && unzip besttrace4linux.zip -d /root/besttrace \
+    && chmod +x /root/besttrace/besttrace32
+
+ENTRYPOINT ["/root/besttrace/besttrace32"]
